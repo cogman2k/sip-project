@@ -1,0 +1,38 @@
+extends ../layout
+
+block content
+    .d-flex.align-items-center.mb-4
+        h1.me-4 Human Resources
+    a.btn.btn-primary(href="/hr/create" role='button')(style='margin-bottom: 50px') + ADD New Employee
+
+    table.table.table-hover.table-bordered
+        thead
+            tr
+                th(scope='col') Employee ID
+                th(scope='col') Full name
+                th(scope='col') City
+                th(scope='col') Email
+                th(scope='col') Phone number
+                th(scope='col') Gender
+                th(scope='col') BirthDay
+                th(scope='col') Shareholder
+                th(scope='col') Actions
+        tbody
+            each employee in employees
+                tr
+                    th(scope='row')= employee.Employee_ID
+                    td= employee.Last_Name + ' ' + employee.First_Name
+                    td= employee.City
+                    td= employee.Email
+                    td= employee.Phone_Number
+                    td= employee.Gender ? 'Male' : 'Female'
+                    td= employee.date
+                    td= employee.Shareholder_Status ? 'Yes' : 'No'
+                    td
+                        a.btn.me-2.btn-outline-secondary(href='/hr/' + employee.Employee_ID role='button') Edit
+                        a.btn.btn-outline-danger(href='/hr/delete/' + employee.Employee_ID role='button') Delete
+            
+
+            
+
+    

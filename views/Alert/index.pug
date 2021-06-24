@@ -1,0 +1,66 @@
+extends ../layout
+
+block content
+    //- .d-flex.align-items-center.mb-4
+    //-     h1.me-4 Alert Vacation Day
+    nav
+        #nav-tab.nav.nav-tabs(role='tablist')
+            button#nav-home-tab.nav-link.active(data-bs-toggle='tab' data-bs-target='#nav-home' type='button' role='tab' aria-controls='nav-home' aria-selected='true') Vacation Day
+            button#nav-profile-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-profile' type='button' role='tab' aria-controls='nav-profile' aria-selected='false') BirthDay
+            button#nav-contact-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-contact' type='button' role='tab' aria-controls='nav-contact' aria-selected='false') Hiring Anniversary
+            button#nav-benefit-tab.nav-link(data-bs-toggle='tab' data-bs-target='#nav-benefit' type='button' role='tab' aria-controls='nav-benefit' aria-selected='false') Change benefit Plans
+        #nav-tabContent.tab-content
+            #nav-home.tab-pane.fade.show.active(role='tabpanel' aria-labelledby='nav-home-tab')
+                each employee in employeeVacation
+                    .alert.alert-danger.alert-dismissible.fade.show(role='alert')
+                        | Employee [
+                        strong= employee.Last_Name + ' ' + employee.First_Name
+                        | ] has accumulated more than a certain number of days of vacation [
+                        strong= employee.Vacation_Days+' Day'
+                        | ]
+                        a.btn.btn-outline-danger(onclick='remove(this)' href='#' role='button')(style="float: right") Send Alert 
+                        
+            #nav-profile.tab-pane.fade(role='tabpanel' aria-labelledby='nav-profile-tab')
+
+                each employee in employeeBirthDay
+
+                    .alert.alert-success.alert-dismissible.fade.show(role='alert')
+                        | Employee [
+                        strong= employee.Last_Name + ' ' + employee.First_Name
+                        | ] have birthdays within the current month [
+                        strong= employee.date
+                        | ]
+                        a.btn.btn-outline-danger(onclick='remove(this)' href='#' role='button')(style="float: right") Send Alert    
+
+            #nav-contact.tab-pane.fade(role='tabpanel' aria-labelledby='nav-contact-tab')
+                each employee in employeeAnniversary
+                    .alert.alert-success.alert-dismissible.fade.show(role='alert')
+                        | Employee [
+                        strong= employee.Last_Name + ' ' + employee.First_Name
+                        | ] has a hiring anniversary in this month [
+                        strong= employee.hireDate
+                        | ]
+                        a.btn.btn-outline-danger(onclick='remove(this)' href='#' role='button')(style="float: right") Send Alert  
+
+            #nav-benefit.tab-pane.fade(role='tabpanel' aria-labelledby='nav-benefit-tab')
+                each employee in employeeVacation
+                    .alert.alert-warning.alert-dismissible.fade.show(role='alert')
+                        | Employee [
+                        strong= employee.Last_Name + ' ' + employee.First_Name
+                        | ] has accumulated more than a certain number of days of vacation [
+                        strong= employee.Vacation_Days+' Day'
+                        | ]
+                        a.btn.btn-outline-danger(onclick='remove(this)' href='#' role='button')(style="float: right") Send Alert  
+    block script       
+        script(type='text/javascript').
+            
+            function remove(el) {
+                var element = el;
+                element.parentNode.remove();
+                alert("Sended Alert To Employee!");
+            }
+
+            var a = "#{employeeList}"
+            var b = "#{employeeVacation}"
+            console.log(a);
+            console.log(b);

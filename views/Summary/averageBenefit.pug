@@ -1,0 +1,78 @@
+extends ../layout
+
+block content
+
+    .row.justify-content-between
+        .chart-container(style='position: relative; height:20vh; width:20vw')
+            canvas#myChart(style='margin-top: 50px')
+            canvas#myChart1(style='margin-top: 50px')
+        .col-7
+            ul.list-group.list-group-flush(style='margin-bottom: 50px')
+                li.list-group-item 
+                    h4 Average Benefit Paid : #{t_averageBenefit}
+                li.list-group-item 
+                    h5  Paid to ShareHolder: #{t_averageBenefitsSh}
+                li.list-group-item 
+                    h5  Paid to Non ShareHolder: #{t_averageBenefitNSh}
+                li.list-group-item
+
+
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th(scope='col') Employee ID
+                        th(scope='col') Full name
+                        th(scope='col') Benefit Plan
+                        th(scope='col') Shareholder
+                        th(scope='col') Percentage_CoPay
+                        th(scope='col') Benefit Paid
+                tbody
+                    each employee in employeeList
+
+                        tr
+                            th(scope='row')= employee.Employee_ID
+                            td= employee.Last_Name + ' ' + employee.First_Name
+                            td= employee.Benefit_Plans
+                            td= employee.Shareholder_Status ? 'Yes' : 'No'
+                            td= employee.Percentage_CoPay
+                            td= (employee.Value * employee.Percentage_CoPay / 100)||0
+                            
+    
+    
+
+block scripts
+    script(type='text/javascript' src='https://www.gstatic.com/charts/loader.js')
+    script(src='https://cdn.jsdelivr.net/npm/chart.js')
+
+    script(type='text/javascript').
+
+        const shareholder = "#{t_averageBenefitsSh}";
+        const nonShareholder = "#{t_averageBenefitNSh}";
+        const data = {
+            labels: [
+                'ShareHolder',
+                'Non ShareHolder',
+            ],
+            datasets: [{
+                label: 'Average Benefit Paid By ShareHolder',
+                data: [shareholder, nonShareholder],
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: data,
+        };
+
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        

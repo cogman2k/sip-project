@@ -1,0 +1,139 @@
+extends ../layout
+
+block content
+    h3 TOTAL EARNINGS 
+
+    .row.justify-content-between
+        .chart-container(style='position: relative; height:20vh; width:20vw')
+            canvas#myChart(style='margin-top: 50px')
+            canvas#myChart1(style='margin-top: 50px')
+            canvas#myChart2(style='margin-top: 50px')
+        .col-7
+            ul.list-group.list-group-flush(style='margin-bottom: 50px')
+                li.list-group-item 
+                    h4 Total Earnings : #{totalEarnings}
+                li.list-group-item 
+                    h5 Male : #{totalEarningsMale}
+                li.list-group-item 
+                    h5 Female : #{totalEarningsFemale}
+                li.list-group-item 
+                    h5 ShareHolder : #{totalEarningsSh}
+                li.list-group-item 
+                    h5 Non ShareHolder : #{totalEarningsNSh}
+                li.list-group-item 
+                    h5 FullTime Employee : #{totalEarningsFullTime}
+                li.list-group-item 
+                    h5 PartTime Employee : #{totalEarningsPartTime}
+                li.list-group-item 
+            table.table.table-hover.table-bordered
+                thead
+                    tr
+                        th(scope='col') Employee ID
+                        th(scope='col') Full name
+                        th(scope='col') Gender
+                        th(scope='col') Shareholder
+                        th(scope='col') Salary actually received
+                tbody
+                    each employee in employeeList
+
+                        tr
+                            th(scope='row')= employee.Employee_ID
+                            td= employee.Last_Name + ' ' + employee.First_Name
+                            td= employee.Gender ? 'Male' : 'Female'
+                            td= employee.Shareholder_Status ? 'Yes' : 'No'
+                            td= employee.Pay_Amount * employee.Pay_Rate || 0
+                            
+
+
+block scripts
+    script(type='text/javascript' src='https://www.gstatic.com/charts/loader.js')
+    script(src='https://cdn.jsdelivr.net/npm/chart.js')
+
+    script(type='text/javascript').
+        const male = "#{totalEarningsMale}";
+        const female = "#{totalEarningsFemale}";
+
+        const shareholder = "#{totalEarningsSh}";
+        const nonShareholder = "#{totalEarningsNSh}";
+
+        const fullTime = "#{totalEarningsFullTime}"
+        const partTime = "#{totalEarningsPartTime}"
+   
+
+        const data = {
+            labels: [
+                'Male',
+                'Female',
+            ],
+            datasets: [{
+                label: 'Total Earnings by Gender',
+                data: [male, female],
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config = {
+            type: 'doughnut',
+            data: data,
+        };
+
+        var myChart = new Chart(
+            document.getElementById('myChart'),
+            config
+        );
+
+        const data1 = {
+            labels: [
+                'ShareHolder',
+                'Non ShareHolder',
+            ],
+            datasets: [{
+                label: 'Total Earnings by ShareHolder',
+                data: [shareholder, nonShareholder],
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config1 = {
+            type: 'doughnut',
+            data: data1,
+        };
+
+        var myChart1 = new Chart(
+            document.getElementById('myChart1'),
+            config1
+        );
+
+        const data2 = {
+            labels: [
+                'FullTime',
+                'PartTime',
+            ],
+            datasets: [{
+                label: 'Total Earnings by FullTime/PartTime',
+                data: [fullTime, partTime],
+                backgroundColor: [
+                'rgb(255, 99, 132)',
+                'rgb(54, 162, 235)',
+                ],
+                hoverOffset: 4
+            }]
+        };
+
+        const config2 = {
+            type: 'doughnut',
+            data: data2,
+        };
+
+        var myChart2 = new Chart(
+            document.getElementById('myChart2'),
+            config2
+        );

@@ -1,0 +1,30 @@
+extends ./layout
+
+block content
+    h2.text-center.text-uppercase.mb-5 Welcome to 4H
+
+    #carouselExampleIndicators.mx-auto.carousel.slide(data-bs-ride='carousel' style='width: 65%')
+                .carousel-indicators
+                    button.active(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='0' aria-current='true' aria-label='Slide 1')
+                    button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='1' aria-label='Slide 2')
+                    button(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide-to='2' aria-label='Slide 3')
+                    
+                //- .carousel-inner
+                //-     .carousel-item.active
+                //-         img.d-block.w-100(src='images/1.jpg' alt='')
+                //-     .carousel-item
+                //-         img.d-block.w-100(src='images/2.jpg' alt='')
+                //-     .carousel-item
+                //-         img.d-block.w-100(src='images/3.jpg' alt='')
+                    
+                button.carousel-control-prev(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='prev')
+                    span.carousel-control-prev-icon(aria-hidden='true')
+                    span.visually-hidden Previous
+                    
+                button.carousel-control-next(type='button' data-bs-target='#carouselExampleIndicators' data-bs-slide='next')
+                    span.carousel-control-next-icon(aria-hidden='true')
+                    span.visually-hidden Next
+    
+    
+
+    

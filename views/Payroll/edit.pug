@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    .w-50.mx-auto
+        h1.mb-3 Payroll - Edit employee
+        
+        form(action='/payroll/' + employee.Employee_Number, method='POST')
+            .mb-3
+                label.form-label(for='employeeNumber') Employee number
+                input#employeeNumber.form-control(name='employeeNumber' type='text' value= employee.Employee_Number)
+
+            .mb-3
+                label.form-label(for='employeeId') Employee ID
+                input#employeeId.form-control(name='employeeId' type='text' value= employee.idEmployee)
+
+            .row.mb-3
+                .col
+                    label.form-label(for='firstName') First name
+                    input#firstName.form-control(type='text' name='firstName' value= employee.First_Name)
+                .col
+                    label.form-label(for='lastName') Last name
+                    input#lastName.form-control(type='text' name='lastName' value= employee.Last_Name)
+
+            .mb-3
+                label.form-label(for='SSN') SSN
+                input#SSN.form-control(name='SSN' type='text' value= employee.SSN)
+            
+            .mb-3.row
+                .col
+                    label.form-label(for='payRateId') Pay rate ID
+                    input#payRateId.form-control(type='text' name='payRateId' value= employee.PayRates_id)
+                .col
+                    label.form-label(for='payRate') Pay rate
+                    input#payRate.form-control(type='text' name='payRate' value= employee.Pay_Rate)                
+
+            .mb-3
+                label.form-label(for='vacationDays') Vacation days
+                input#vacationDays.form-control(type='text' name='vacationDays' value= employee.Vacation_Days)    
+
+            button.btn.btn-primary(type='submit') Submit

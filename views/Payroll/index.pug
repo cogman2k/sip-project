@@ -1,0 +1,42 @@
+extends ../layout
+
+block content
+    .d-flex.align-items-center.mb-4
+        h1.me-4 Payroll
+    a.btn.btn-primary(href="/payroll/create" role='button')(style='margin-bottom: 50px') + ADD New Employee
+    table.table.table-hover.table-bordered
+        thead
+            tr
+                th(scope='col') Employee ID
+                th(scope='col') Employee number
+                th(scope='col') Full name
+                th(scope='col') SSN
+                th(scope='col') Pay rate ID
+                th(scope='col') Pay rate
+                th(scope='col') Tax percentage
+                th(scope='col') Pay amount
+                //- th(scope='col') Paid to date
+                //- th(scope='col') Paid last year
+                th(scope='col') Vacation days
+                th(scope='col') Actions
+        tbody
+            each employee in employees
+                tr
+                    th(scope='row')= employee.idEmployee
+                    td= employee.Employee_Number
+                    td= employee.Last_Name + ' ' + employee.First_Name
+                    td= employee.SSN
+                    td= employee.idPay_Rates
+                    td= employee.Pay_Rate
+                    td= employee.Tax_Percentage
+                    td= employee.Pay_Amount * employee.Pay_Rate
+                    //- td= employee.Paid_To_Date
+                    //- td= employee.Paid_Last_Year
+                    td= employee.Vacation_Days
+                    td
+                        a.btn.me-2.btn-outline-secondary(href='/payroll/' + employee.Employee_Number role='button') Edit
+                        a.btn.btn-outline-danger(href='/payroll/delete/' + employee.Employee_Number role='button') Delete
+
+            
+
+    

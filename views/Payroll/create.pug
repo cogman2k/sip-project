@@ -1,0 +1,40 @@
+extends ../layout
+
+block content
+    .w-50.mx-auto
+        h1.mb-3 Payroll - Create new employee
+        
+        form(action='/payroll/create', method='POST')
+            .mb-3
+                label.form-label(for='employeeNumber') Employee number
+                input#employeeNumber.form-control(name='employeeNumber' type='text' value= proId + 1)
+
+            .mb-3
+                label.form-label(for='employeeId') Employee ID
+                input#employeeId.form-control(name='employeeId' type='text' value= smartId + 1)
+
+            .row.mb-3
+                .col
+                    label.form-label(for='firstName') First name
+                    input#firstName.form-control(type='text' name='firstName')
+                .col
+                    label.form-label(for='lastName') Last name
+                    input#lastName.form-control(type='text' name='lastName')
+
+            .mb-3
+                label.form-label(for='SSN') SSN
+                input#SSN.form-control(name='SSN' type='text')
+            
+            .mb-3.row
+                .col
+                    label.form-label(for='payRateId') Pay rate ID
+                    input#payRateId.form-control(type='text' name='payRateId')
+                .col
+                    label.form-label(for='payRate') Pay rate
+                    input#payRate.form-control(type='text' name='payRate')                
+
+            .mb-3
+                label.form-label(for='vacationDays') Vacation days
+                input#vacationDays.form-control(type='text' name='vacationDays')    
+
+            button.btn.btn-primary(type='submit') Submit

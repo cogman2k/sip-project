@@ -1,0 +1,55 @@
+extends ../layout
+
+block content
+    .w-50.mx-auto
+        h1.mb-3 HR - Create new employee
+        
+        form(action='/hr/create', method='POST')
+            .mb-3
+                label.form-label(for='employeeId') Employee ID
+                input#employeeId.form-control(name='employeeId' type='text' value= smartId + 1)
+
+            .row.mb-3
+                .col
+                    label.form-label(for='firstName') First name
+                    input#firstName.form-control(type='text' name='firstName')
+                .col
+                    label.form-label(for='lastName') Last name
+                    input#lastName.form-control(type='text' name='lastName')
+            
+            .mb-3.row
+                .col-3
+                    .form-check
+                        input#maleGender.form-check-input(type='radio' name='gender' checked='' value='1')
+                        label.form-check-label(for='maleGender')
+                            | Male
+                .col-3               
+                    .form-check
+                        input#femaleGender.form-check-input(type='radio' name='gender' value='0')
+                        label.form-check-label(for='femaleGender')
+                            | Female
+            .mb-3.row
+                .col
+                    label.form-label(for='city') City
+                    input#city.form-control(type='text' name='city')
+                .col
+                    label.form-label(for='email') Email
+                    input#email.form-control(type='email' name='email')
+                .col
+                    label.form-label(for='birthday') BirthDay
+                    input#birthday.form-control(type='date' name='birthday')                          
+
+            .mb-3
+                label.form-label(for='phoneNumber') Phone number
+                input#phoneNumber.form-control(type='text' name='phone')    
+            
+            .mb-5
+                label.form-label Shareholder status
+                select.form-select(name='shareholder')
+                    option(value='1') True
+                    option(value='0') False
+            .mb-3
+                label.form-label(for='phoneNumber') Benefits Plan
+                input#phoneNumber.form-control(type='text' name='benefitPlan')    
+
+            button.btn.btn-primary(type='submit') Submit
